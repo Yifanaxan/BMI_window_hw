@@ -13,7 +13,7 @@ class Window(tk.Tk):
         ttkStyle.configure('gridEntry.TEntry',font=('Helvetica', 16))
         
         mainFrame = ttk.Frame(self,style='top.TFrame',padding=10)        
-        mainFrame.pack(expand=True,fill=tk.BOTH)#,padx=30,pady=30)
+        mainFrame.pack(expand=True,fill=tk.BOTH)
         
         topFrame = ttk.Frame(mainFrame,height=100)
         topFrame.pack(fill=tk.X)
