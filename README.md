@@ -19,8 +19,8 @@
 呼叫function時，什麼時候需要加()?
 ### 解答
 ![Alt text](def.png)
-#### 呼叫function say_hello不用加()
-#### 定義(註冊) function 要加()
+### 呼叫function say_hello不用加()
+### 定義(註冊) function 要加()
 
 - 強制push上github
 - git push -f
