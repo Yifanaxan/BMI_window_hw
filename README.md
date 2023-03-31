@@ -18,4 +18,5 @@
 ### 疑問
 呼叫function時，什麼時候需要加()?
 
-
+-強制push上github
+-git push -f
