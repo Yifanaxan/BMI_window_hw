@@ -124,7 +124,7 @@ class Window(tk.Tk):
         ttk.Label(thdFrame,text='(女性 : >= 80公分)',style='gridLabelR4.TLabel').grid(row=6,column=2,sticky="NSEW")
         ttk.Label(thdFrame,style='gridLabelR4.TLabel').grid(row=7,column=2,sticky="NSEW")
 
-#放入照片--------------------------------------------------------------
+#Label放入照片--------------------------------------------------------------
         logoImage = Image.open('Anderson.jpg')
         resizeImage = logoImage.resize((100,120),Image.LANCZOS)
         self.logoTkimage = ImageTk.PhotoImage(resizeImage)
