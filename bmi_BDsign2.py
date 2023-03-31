@@ -180,14 +180,14 @@ class Window(tk.Tk):
         else:
              bmi_msg= "健康亮紅燈囉!放下手上那塊雞排!!"
 #呼叫星座        
-        self.zodiac_sign, self.zodiac_symbol = self.calculate_zodiac_sign()
+        self.zodiac_sign = self.calculate_zodiac_sign()
 
 #訊息對話視窗             
         self.messageText.configure(state=tk.NORMAL)
         self.messageText.delete('1.0',tk.END)
         self.messageText.tag_configure("center", justify='center')
         self.messageText.tag_add("center", "1.0", "end")
-        self.messageText.insert(tk.END, f"{ self.name_entry.get()} ~ 您好:\n        芳齡: {self.age()} \n        星座: {self.zodiac_sign}{self.zodiac_symbol}\n        目前BMI: {bmi:.1f}\n        {bmi_msg}")
+        self.messageText.insert(tk.END, f"{ self.name_entry.get()} ~ 您好:\n        芳齡: {self.age()} \n        星座: {self.zodiac_sign}\n        目前BMI: {bmi:.1f}\n        {bmi_msg}")
         self.messageText.configure(state=tk.DISABLED)
 
 #計算年齡
@@ -197,27 +197,29 @@ class Window(tk.Tk):
         yourage = today.year - birthday.year - ((today.month, today.day) < (birthday.month, birthday.day))
         return yourage
     
-#計算星座
+#另一種計算星座的方式
     def calculate_zodiac_sign(self,*args):
-        zodiac_signs = (
-                (1, 20, "水瓶座", "♒"),
-                (2, 19, "雙魚座", "♓"),
-                (3, 21, "牡羊座", "♈"),
-                (4, 20, "金牛座", "♉"),
-                (5, 21, "雙子座", "♊"),
-                (6, 21, "巨蠍座", "♋"),
-                (7, 23, "獅子座", "♌"),
-                (8, 23, "處女座", "♍"),
-                (9, 23, "天秤座", "♎"),
-                (10, 23, "天蠍座", "♏"),
-                (11, 22, "射手座", "♐"),
-                (12, 22, "摩羯座", "♑")
-        )
         birthday = datetime.datetime.strptime(self.bd_entry.get(), '%Y/%m/%d')
         month, day = birthday.month, birthday.day
-        for sign in zodiac_signs:
-             if month == sign[0] and day >= sign[1] or month == sign[0] + 1 and day <= sign[1]:
-                  return sign[2], sign[3]
+        zodiac_signs = {
+                'Capricorn':    (date(2000, 1, 1),  date(2000, 1, 19)),
+                'Aquarius':     (date(2000, 1, 20), date(2000, 2, 18)),
+                'Pisces':       (date(2000, 2, 19), date(2000, 3, 20)),
+                'Aries':        (date(2000, 3, 21), date(2000, 4, 19)),
+                'Taurus':       (date(2000, 4, 20), date(2000, 5, 20)),
+                'Gemini':       (date(2000, 5, 21), date(2000, 6, 20)),
+                'Cancer':       (date(2000, 6, 21), date(2000, 7, 22)),
+                'Leo':          (date(2000, 7, 23), date(2000, 8, 22)),
+                'Virgo':        (date(2000, 8, 23), date(2000, 9, 22)),
+                'Libra':        (date(2000, 9, 23), date(2000, 10, 22)),
+                'Scorpio':      (date(2000, 10, 23), date(2000, 11, 21)),
+                'Sagittarius':  (date(2000, 11, 22), date(2000, 12, 21)),
+                'Capricorn2':   (date(2000, 12, 22), date(2000, 12, 31))
+                }
+        for sign, (start_date, end_date) in zodiac_signs.items():
+                if (month, day) >= (start_date.month, start_date.day) and (month, day) <= (end_date.month, end_date.day):
+                        return sign
+
 
 #刪除按鈕功能
     def clear(self):
